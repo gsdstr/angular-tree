@@ -1,0 +1,7 @@
+<div class="panel-body">
+	{{path}}
+	<button *ngIf="path" type="button" class="btn btn-sm btn-primary" title="Add folder" (click)="save();$event.stopPropagation()">save</button>
+	<textarea class="form-control" rows="15" [disabled]="!path" [(ngModel)]="content"></textarea>
+</div>
+
+

@@ -1,0 +1,41 @@
+<div>
+	<div pDraggable="dd" (onDragStart)='onDragStart(node);$event.stopPropagation()' (onDragEnd)='onDragEnd(node);$event.stopPropagation()'>
+		<div (click)="open();$event.stopPropagation()" pDroppable="dd" (onDrop)='onDrop(node);$event.stopPropagation()'>
+			<i class="fa {{classIco}}"></i>
+
+			<span *ngIf='isNameInput'>
+				<!-- todo validate name-->
+				<input type='text' (blur)="setNameInput(false);$event.stopPropagation()" [(ngModel)]='node.name'>
+			</span>
+			<span *ngIf='!isNameInput'>{{node.name}}</span>
+
+			<span *ngIf="node.children">
+				<div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-sm btn-primary" title="Add folder" (click)="addFolder();$event.stopPropagation()">
+						<i class="fa fa-plus-circle"></i>
+						<i class="fa fa-folder-o"></i>
+					</button>
+					<button type="button" class="btn btn-sm btn-primary" title="Add file" (click)="addFile();$event.stopPropagation()">
+						<i class="fa fa-plus-circle"></i>
+						<i class="fa fa-file-o"></i>
+					</button>
+				</div>
+			</span>
+			<span *ngIf="node.editable">
+				<button type="button" class="btn btn-sm btn-danger" title="Rename" (click)='setNameInput(true);$event.stopPropagation()'>
+					<i class="fa fa-pencil"></i>
+				</button>
+				<button type="button" class="btn btn-sm btn-danger" title="Delete" (click)="remove();$event.stopPropagation()">
+					<i class="fa fa-trash"></i>
+				</button>
+			</span>
+			<div *ngIf="node.children">
+				<ul>
+					<li *ngFor="let item of node.children">
+						<div><tree-node [node]="item"></tree-node></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
