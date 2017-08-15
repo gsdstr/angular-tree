@@ -1,6 +1,6 @@
-///<reference path="tree-node-folder.ts"/>
 
 // TODO extract interface
+
 export abstract class TreeNode {
 
 	protected static PATH_DIVIDER = '/';

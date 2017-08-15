@@ -1,11 +1,11 @@
 <div>
 	<div pDraggable="dd" (onDragStart)='onDragStart(node);$event.stopPropagation()' (onDragEnd)='onDragEnd(node);$event.stopPropagation()'>
-		<div (click)="open();$event.stopPropagation()" pDroppable="dd" (onDrop)='onDrop(node);$event.stopPropagation()'>
+		<div (click)="open();$event.stopPropagation()" pDroppable="{{node.children ? 'dd' : 'nn'}}" (onDrop)='onDrop(node);$event.stopPropagation()'>
 			<i class="fa {{classIco}}"></i>
 
 			<span *ngIf='isNameInput'>
 				<!-- todo validate name-->
-				<input type='text' (blur)="setNameInput(false);$event.stopPropagation()" [(ngModel)]='node.name'>
+				<input #inputName type='text' (blur)="setNameInput(false);$event.stopPropagation()" [(ngModel)]='node.name'>
 			</span>
 			<span *ngIf='!isNameInput'>{{node.name}}</span>
 

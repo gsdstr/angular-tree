@@ -16,4 +16,7 @@ export abstract class TreeNodeFactory {
 		}
 	}
 
+	static clone(parent, node: TreeNode) {
+		return TreeNodeFactory.fromPlain(parent, node.toPlain())
+	}
 }
